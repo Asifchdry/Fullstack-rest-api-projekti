@@ -30,6 +30,25 @@ app.get("/api/getall", (req, res) => {
     res.json(movies)
 });
 
+app.get('/api/getall.html' ,function(req, res) {
+    var data = require(movies);
+
+    var results = '<table border="3" style="color:gold; font-family: courier; background-color:black"><th>Movie Name</th><th>Release date</th><th>Director</th>';
+
+    for (var i=0; i < data.length; i++){
+        results +=
+        '<tr>'+
+        '<td>'+data[i].title+'</td>'+
+        '<td>'+data[i].release_date+'</td>'+
+        '<td>'+data[i].director+'</td>'+
+        '</tr>';
+    }
+
+    res.send(results);
+
+});
+
+
 // lisää elokuva
 app.post("/api/add", (req,res) => {
     const movie = req.body;
